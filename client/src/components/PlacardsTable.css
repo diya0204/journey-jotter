@@ -1,0 +1,36 @@
+.placards-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+  td {
+    width: 33.3%;
+    padding: 20px;
+    text-align: center;
+  }
+  .placard {
+    border: 10px 10px 10px 10px #333;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+  }
+  .placard:hover {
+    transform: translateY(-10px);
+  }
+  .header {
+    width: 100%;
+    height: 250px;
+    font-size: 3rem;
+    text-align: center;
+    background: url("https://virtualholidays.co.in/images/about-us.jpg") no-repeat center center;
+    padding: 20px;
+  }
+  .img {
+    border: 10px 10px 10px 10px;
+    border-radius: 10px;
+    width: 400px;
+    height: 275px;
+  }

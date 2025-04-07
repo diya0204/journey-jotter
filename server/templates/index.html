@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Jotter Chatbot</title>
+    <style>
+        /* Global Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Chat Container */
+        .chat-container {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Chat Body */
+        .chat-body {
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* Chat Bubbles */
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            width: fit-content;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+
+        .user-message {
+            background: #007bff;
+            color: white;
+            align-self: flex-end;
+            text-align: right;
+            margin-left: auto;
+        }
+
+        .bot-message {
+            background: #e9ecef;
+            color: black;
+            align-self: flex-start;
+        }
+
+        /* Chat Input Section */
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-footer input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .chat-footer button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chat-footer button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Journey Jotter Chatbot</div>
+        <div class="chat-body" id="chatBody">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById("userInput");
+            const chatBody = document.getElementById("chatBody");
+
+            const userMessage = userInput.value.trim();
+            if (!userMessage) return;
+
+            // Display user message
+            const userDiv = document.createElement("div");
+            userDiv.classList.add("message", "user-message");
+            userDiv.innerText = userMessage;
+            chatBody.appendChild(userDiv);
+
+            // Clear input field
+            userInput.value = "";
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Display "Thinking..." message
+            const botDiv = document.createElement("div");
+            botDiv.classList.add("message", "bot-message");
+            botDiv.innerText = "Thinking...";
+            chatBody.appendChild(botDiv);
+
+            // Fetch bot response
+            try {
+                const response = await fetch("/get_response", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: userMessage })
+                });
+
+                const data = await response.json();
+                botDiv.innerText = data.response;
+            } catch (error) {
+                botDiv.innerText = "Error: Unable to connect.";
+            }
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>

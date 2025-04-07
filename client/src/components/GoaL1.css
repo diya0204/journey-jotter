@@ -1,0 +1,117 @@
+/* Main Container */
+.travel-container {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Header */
+  .headerGl1 {
+    width: 100%;
+    height: 250px;
+    background: url("https://www.incrediblegoa.org/wp-content/uploads/2024/03/Hidden-Gems-of-South-Goa.jpg") no-repeat left center;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .headerGl1 h1 {
+    font-size: 3rem;
+    padding-left : 10px;
+    text-align: left;
+  }
+  
+  .headerGl1 h2 {
+    font-size: 2rem;
+    margin: 10px 0;
+    text-align: left;
+    padding-left : 10px;
+
+  }
+  
+  .buttons {
+    display: flex;
+    text-align: center;
+    gap: none;
+  }
+  
+  .nav-button {
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .nav-button:hover {
+    background-color: #0055aa;
+  }
+  /* Tabs */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    background-color: #002244;
+  }
+  
+  .tab {
+    color: white;
+    cursor: pointer;
+  }
+  
+  .tab.active {
+    border-bottom: 3px solid white;
+  }
+  
+  /* Activities Section */
+  .content {
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .activity-grid {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(1200px, 2fr));
+    gap: 20px;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .activity-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    height: 100%;
+    width: calc(50% - 20px);
+  }
+  
+  .activity-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .activity-card:hover img {
+    transform: scale(1.1);
+  }
+  
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+  
